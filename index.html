@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cocotilo37 — Simracing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── VARIABLES ─── */
+    :root {
+      --red:     #E02020;
+      --black:   #0a0a0a;
+      --white:   #f5f5f0;
+      --muted:   #666;
+      --border:  rgba(255,255,255,0.08);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,10,0.7);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+      overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: -0.05em;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(12rem, 28vw, 26rem);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: 2px;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.2s;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+    .hero-desc {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 460px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.5s;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--white);
+      color: var(--white);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn:hover { background: var(--white); color: var(--black); }
+    .btn-red { background: var(--red); border-color: var(--red); color: var(--white); }
+    .btn-red:hover { background: #c01818; border-color: #c01818; color: var(--white); }
+
+    /* ─── STATS ─── */
+    .stats-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 2rem;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--red); }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── SECTION ─── */
+    section {
+      padding: 6rem 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    /* ─── ABOUT ─── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    #about h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    #about p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 1.5rem;
+      /* EDITAR: cambia este texto por tu descripción personal */
+    }
+
+    /* ─── CONTENT ─── */
+    #content h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 1px;
+      margin-bottom: 3rem;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .content-card {
+      background: var(--black);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .content-card:hover { background: #111; }
+    .card-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--red);
+      opacity: 0.4;
+      line-height: 1;
+    }
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      margin: 0.5rem 0;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      /* EDITAR: descripción de cada tipo de contenido */
+    }
+
+    /* ─── SPONSORSHIP ─── */
+    #sponsorship {
+      border-top: 1px solid var(--border);
+    }
+    #sponsorship h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    #sponsorship p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+    .offer-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .offer-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+    }
+    .offer-list li::before {
+      content: '→';
+      color: var(--red);
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    #contact h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    #contact p {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stats-bar { padding: 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">cocotilo<span>37</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#content">Contenido</a></li>
+      <li><a href="#sponsorship">Patrocinio</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-text">SIM</div>
+    <div class="hero-content">
+      <p class="hero-tag">Creador de contenido · Sevilla, España</p>
+      <h1>COCOTI<em>LO</em><br>37</h1>
+      <p class="hero-desc">
+        <!-- EDITAR: tu frase de presentación -->
+        Simracing en iRacing y Assetto Corsa. Clips, consejos y técnicas para ir más rápido. Compito y comparto todo lo que aprendo.
+      </p>
+      <div class="hero-cta">
+        <a href="https://instagram.com/cocotilo37" class="btn btn-red" target="_blank">Instagram →</a>
+        <a href="#sponsorship" class="btn">Patrocinio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">10<span>.9K</span></div>
+      <div class="stat-label">Seguidores</div>
+    </div>
+    <div class="stat-item">
+      <!-- EDITAR: rellena con tu engagement real -->
+      <div class="stat-num">—<span>%</span></div>
+      <div class="stat-label">Engagement</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">218</div>
+      <div class="stat-label">Publicaciones</div>
+    </div>
+    <div class="stat-item">
+      <!-- EDITAR: rellena con tu alcance real -->
+      <div class="stat-num">—<span>K</span></div>
+      <div class="stat-label">Alcance medio</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">Sobre mí</p>
+    <div class="about-grid">
+      <div>
+        <h2>PILOTO.<br>CREADOR.<br>EN FORMACIÓN.</h2>
+      </div>
+      <div>
+        <p>
+          <!-- EDITAR: tu historia personal, cuándo empezaste, qué te mueve -->
+          Tengo 17 años y llevo compitiendo en simracing desde que descubrí que podía aprender a ir más rápido desde casa. iRacing y Assetto Corsa son mi pista de entrenamiento. Instagram es donde comparto cada décima que mejoro.
+        </p>
+        <p style="margin-top: 1rem;">
+          <!-- EDITAR: segunda parte de tu historia -->
+          Con base en Sevilla y respaldo familiar, mi objetivo es competir cada vez en más categorías y llevar el simracing español a otro nivel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section id="content">
+    <p class="section-label">Contenido</p>
+    <h2>LO QUE<br>PUBLICO</h2>
+    <div class="content-grid">
+      <div class="content-card">
+        <div class="card-num">01</div>
+        <div class="card-title">Gameplays & Carreras</div>
+        <p class="card-desc">Onboards, batallas en pista y momentos clave de mis sesiones en iRacing y Assetto Corsa.</p>
+      </div>
+      <div class="content-card">
+        <div class="card-num">02</div>
+        <div class="card-title">Tutoriales & Técnica</div>
+        <p class="card-desc">Consejos prácticos para mejorar el ritmo de vuelta: frenadas, trazadas, setup y mentalidad.</p>
+      </div>
+      <div class="content-card">
+        <div class="card-num">03</div>
+        <div class="card-title">Setups</div>
+        <!-- EDITAR: descripción de este tipo de contenido -->
+        <p class="card-desc">Configuraciones y ajustes que uso en competición. Todo lo que funciona, explicado desde cero.</p>
+      </div>
+      <div class="content-card">
+        <!-- EDITAR: añade o elimina cards según tu contenido real -->
+        <div class="card-num">04</div>
+        <div class="card-title">Clips & Highlights</div>
+        <p class="card-desc">Los momentos que merece la pena guardar. Adelantamientos, récords y caos en pista.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORSHIP -->
+  <section id="sponsorship">
+    <p class="section-label">Patrocinio</p>
+    <h2>TRABAJA<br>CONMIGO</h2>
+    <p>
+      11.000 personas del mundo simracing te están esperando. Contenido real, audiencia cualificada, nicho 100% motor.
+    </p>
+    <ul class="offer-list">
+      <li>Menciones en reels y vídeos</li>
+      <li>Posts y stories dedicados</li>
+      <li>Logo en casco y mono de karting</li>
+      <li>Código de descuento de afiliado</li>
+    </ul>
+    <div class="hero-cta">
+      <!-- EDITAR: enlace al media kit cuando lo tengas online -->
+      <a href="#contact" class="btn btn-red">Ver media kit →</a>
+      <a href="#contact" class="btn">Contacto</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label" style="justify-content:center;">Contacto</p>
+    <h2>HABLEMOS.</h2>
+    <p>
+      <!-- EDITAR: añade tu email si quieres contacto profesional -->
+      Para colaboraciones y patrocinios, escríbeme directamente por Instagram.
+    </p>
+    <div class="contact-links">
+      <a href="https://instagram.com/cocotilo37" class="btn btn-red" target="_blank">@cocotilo37</a>
+      <!-- EDITAR: añade más canales si tienes (TikTok, YouTube, email) -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 cocotilo37</p>
+    <p>Sevilla, España · Simracing</p>
+  </footer>
+
+</body>
+</html>
