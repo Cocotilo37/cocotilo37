@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cocotilo37 — Simracing</title>
+  <title>Cocotilo37</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -76,6 +76,19 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO LOGO ─── */
+    .hero-logo {
+      width: clamp(120px, 16vw, 180px);
+      height: clamp(120px, 16vw, 180px);
+      border-radius: 50%;
+      border: 2px solid rgba(224,32,32,0.5);
+      object-fit: cover;
+      display: block;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.05s;
+    }
 
     /* ─── HERO ─── */
     #hero {
@@ -506,6 +519,7 @@
   <section id="hero">
     <div class="hero-bg-text">SIM</div>
     <div class="hero-content">
+      <img src="assets/logo.jpg" alt="Cocotilo37" class="hero-logo">
       <p class="hero-tag">Creador de contenido · Sevilla, España</p>
       <h1>COCOTI<span style="color: var(--white);">LO</span><br><span style="color: var(--red);">37</span></h1>
       <p class="hero-desc">
@@ -515,7 +529,7 @@
       <div class="hero-cta">
         <a href="https://instagram.com/cocotilo37" class="btn btn-red" target="_blank">Instagram →</a>
         <a href="#sponsorship" class="btn">Patrocinio</a>
-        <a href="https://cocotilo37.vercel.app" class="btn" target="_blank">Media Kit</a>
+        <a href="assets/mediakit.png" class="btn" target="_blank">Media Kit</a>
       </div>
     </div>
   </section>
@@ -545,21 +559,18 @@
     <p class="section-label">Sobre mí</p>
     <div class="about-grid">
       <div>
-        <h2>PILOTO.<br>CREADOR.<br>EN FORMACIÓN.</h2>
+        <h2>PILOTO.<br>CREADOR.</h2>
         <div class="platforms-row">
           <span class="platform-tag active">iRacing</span>
           <span class="platform-tag active">Assetto Corsa</span>
-          <span class="platform-tag">Instagram</span>
-          <span class="platform-tag">YouTube</span>
-          <span class="platform-tag">TikTok</span>
         </div>
       </div>
       <div>
         <p>
-          Tengo 17 años y llevo compitiendo en simracing desde que descubrí que podía aprender a ir más rápido desde casa. iRacing y Assetto Corsa son mi pista de entrenamiento. Instagram es donde comparto cada décima que mejoro.
+          Compito en simracing desde que descubrí que podía aprender a ir más rápido desde casa. iRacing y Assetto Corsa son mi pista de entrenamiento. Instagram es donde comparto cada décima que mejoro.
         </p>
         <p style="margin-top: 1rem;">
-          Con base en Sevilla y respaldo familiar, compagino el simracing con sesiones reales de karting para trasladar lo aprendido en el simulador al asfalto. Mi objetivo es competir en más categorías y llevar el simracing hispanohablante a otro nivel.
+          Con base en Sevilla, compagino el simracing con sesiones reales de karting para trasladar lo aprendido en el simulador al asfalto. Mi objetivo es competir en más categorías y llevar el simracing hispanohablante a otro nivel.
         </p>
         <p style="margin-top: 1rem;">
           Mi audiencia no es casual — son simracers y apasionados del motor de España y LATAM que siguen el contenido de forma activa. Eso explica el 27% de engagement.
@@ -638,17 +649,13 @@
         <div class="a-value">Hispanohablante · España y LATAM</div>
       </div>
       <div class="audience-item">
-        <div class="a-label">Perfil</div>
-        <div class="a-value">17 años · Respaldo familiar</div>
-      </div>
-      <div class="audience-item">
         <div class="a-label">Comunidad</div>
         <div class="a-value">Activa y comprometida</div>
       </div>
     </div>
 
     <div class="hero-cta">
-      <a href="https://cocotilo37.vercel.app" class="btn btn-red" target="_blank">Ver media kit →</a>
+      <a href="assets/mediakit.png" class="btn btn-red" target="_blank">Ver media kit →</a>
       <a href="#contact" class="btn">Contacto</a>
     </div>
   </section>
@@ -663,10 +670,10 @@
     <div class="contact-links">
       <a href="https://instagram.com/cocotilo37" class="btn btn-red" target="_blank">@cocotilo37 — Instagram</a>
       <a href="https://youtube.com/@cocotilo37" class="btn" target="_blank">YouTube</a>
-      <a href="https://tiktok.com/@cocotilo37" class="btn" target="_blank">TikTok</a>
+      <a href="https://tiktok.com/@cocotilo_37" class="btn" target="_blank">TikTok</a>
     </div>
     <div class="contact-email">
-      <a href="/cdn-cgi/l/email-protection#8ae9e5e9e5fee3e6e5b9bdcaede7ebe3e6a4e9e5e7"><span class="__cf_email__" data-cfemail="f0939f939f84999c9fc3c7b0979d91999cde939f9d">[email&#160;protected]</span></a>
+      <a href="mailto:cocotilo37@gmail.com">cocotilo37@gmail.com</a>
       &nbsp;·&nbsp;
       <a href="https://cocotilo37.vercel.app" target="_blank">cocotilo37.vercel.app</a>
     </div>
