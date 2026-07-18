@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --racing-red: #E02020;
+  --racing-red-dark: #a51616;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --card: #161616;
+  --border: #222222;
+  --muted: #2a2a2a;
+  --text: #f5f5f0;
+  --text-dim: #888888;
+
+  /* Home page (cocotilo37 landing) palette */
+  --red: #E02020;
+  --black: #0a0a0a;
+  --white: #f5f5f0;
+  --home-muted: #f1e8e8;
+  --home-border: rgba(255,255,255,0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--racing-red);
+}
+
+/* Selection */
+::selection {
+  background: rgba(224,32,32, 0.3);
+  color: #fff;
+}
+
+/* PIN input */
+.pin-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+.pin-input:focus {
+  border-bottom-color: var(--racing-red);
+}
+
+/* Noise overlay */
+.noise-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Red accent line on cards */
+.card-accent {
+  position: relative;
+  overflow: hidden;
+}
+.card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--racing-red);
+}
+
+/* Status badges */
+.status-pending {
+  background: rgba(100, 100, 100, 0.15);
+  color: #888888;
+  border: 1px solid rgba(100,100,100,0.3);
+}
+.status-confirmed {
+  background: rgba(45, 158, 95, 0.12);
+  color: #2d9e5f;
+  border: 1px solid rgba(45,158,95,0.3);
+}
+.status-completed {
+  background: rgba(29, 111, 168, 0.12);
+  color: #4da6d8;
+  border: 1px solid rgba(29,111,168,0.3);
+}
+.status-cancelled {
+  background: rgba(224,32,32, 0.1);
+  color: #E02020;
+  border: 1px solid rgba(224,32,32,0.3);
+}
+
+/* Availability grid */
+.avail-cell {
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.avail-cell:hover {
+  background: rgba(224,32,32, 0.15);
+  border-color: rgba(224,32,32, 0.5);
+}
+.avail-cell.selected {
+  background: rgba(224,32,32, 0.25);
+  border-color: var(--racing-red);
+}
+
+/* Racing stripe header */
+.racing-stripe {
+  background: linear-gradient(135deg, var(--racing-red) 0%, var(--racing-red-dark) 100%);
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-bebas), sans-serif;
+  }
+  .font-mono {
+    font-family: var(--font-dm-mono), monospace;
+  }
+}
