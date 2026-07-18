@@ -5,10 +5,17 @@ import Link from "next/link";
 
 export default function HomePage() {
   useEffect(() => {
+    const revealEls = Array.from(document.querySelectorAll(".reveal"));
+    // Only hide-then-reveal if IntersectionObserver is actually available.
+    if (!("IntersectionObserver" in window)) return;
+
+    revealEls.forEach((el) => el.classList.add("pre-reveal"));
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            entry.target.classList.remove("pre-reveal");
             entry.target.classList.add("visible");
             observer.unobserve(entry.target);
           }
@@ -16,7 +23,7 @@ export default function HomePage() {
       },
       { threshold: 0.12 }
     );
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    revealEls.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -379,9 +386,13 @@ export default function HomePage() {
         }
 
         .reveal {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .reveal:global(.pre-reveal) {
           opacity: 0;
           transform: translateY(22px);
-          transition: opacity 0.45s ease, transform 0.45s ease;
         }
         .reveal:global(.visible) {
           opacity: 1;
