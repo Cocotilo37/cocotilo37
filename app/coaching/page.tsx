@@ -52,7 +52,7 @@ export default function LoginPage() {
 
       <div className="relative z-10 w-full max-w-sm">
         <a href="/" className="absolute -top-10 left-0 flex items-center gap-1.5 text-racing-textDim hover:text-white text-xs font-mono uppercase tracking-widest transition-colors">
-          ← Volver a cocotilo37
+          ← Volver a cocotilo
         </a>
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
