@@ -21,7 +21,7 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Cocotilo37",
+  title: "Víctor Salmerón",
   description: "Simracing, contenido y coaching de motorsport — Cocotilo37",
   icons: { icon: "/logo.jpg" },
 };

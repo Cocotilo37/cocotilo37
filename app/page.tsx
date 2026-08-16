@@ -47,15 +47,15 @@ export default function HomePage() {
         <div className="hero-bg-text">SIM</div>
         <div className="hero-content">
           <div className="hero-text">
-            <p className="hero-tag">Creador de contenido · Sevilla, España</p>
+            <p className="hero-tag">Creador de contenido</p>
             <h1>
-              COCO<span style={{ color: "var(--white)" }}>TILO</span>
+			Víctor Salmerón
             </h1>
-            <p className="hero-name">Víctor Salmerón</p>
+            <p className="hero-name">COCOTILO</p>
             <p className="hero-desc">
               Simracing en iRacing y Assetto Corsa. Gameplays, técnicas de pilotaje y setups para ir más rápido.
             </p>
-            <div className="hero-pill">27% engagement rate</div>
+            <div className="hero-pill">11% engagement rate</div>
             <div className="hero-cta">
               <a href="https://instagram.com/thecocotilo" className="btn btn-red" target="_blank" rel="noreferrer">Instagram →</a>
               <Link href="/coaching" className="btn">Coaching</Link>
@@ -74,7 +74,7 @@ export default function HomePage() {
           <div className="stat-label">Seguidores</div>
         </div>
         <div className="stat-item reveal">
-          <div className="stat-num">27%</div>
+          <div className="stat-num">11%</div>
           <div className="stat-label">Engagement</div>
         </div>
         <div className="stat-item reveal">
@@ -100,7 +100,7 @@ export default function HomePage() {
           <div className="reveal">
             <p>Compito en simracing desde que descubrí que podía aprender a ir más rápido desde casa. iRacing y Assetto Corsa son mi pista de entrenamiento. Instagram es donde comparto cada décima que mejoro.</p>
             <p style={{ marginTop: "1rem" }}>Con base en Sevilla, compagino el simracing con sesiones reales de karting para trasladar lo aprendido en el simulador al asfalto. Mi objetivo es competir en más categorías y llevar el simracing hispanohablante a otro nivel.</p>
-            <p style={{ marginTop: "1rem" }}>Mi audiencia no es casual — son simracers y apasionados del motor de España y LATAM que siguen el contenido de forma activa. Eso explica el 27% de engagement.</p>
+            <p style={{ marginTop: "1rem" }}>Mi audiencia no es casual — son simracers y apasionados del motor de España y LATAM que siguen el contenido de forma activa. Eso explica el 11% de engagement.</p>
           </div>
         </div>
       </section>
@@ -138,10 +138,10 @@ export default function HomePage() {
         <div className="sponsorship-intro">
           <div className="reveal">
             <p>No son 10.900 seguidores cualquiera. Son simracers y aficionados al motor que interactúan, comentan y compran. Un nicho 100% cualificado, hispanohablante, con una comunidad que responde.</p>
-            <p style={{ marginTop: "1rem" }}>La media de engagement en Instagram para creadores de este tamaño ronda el 3–6%. Aquí estamos en el 27%. Eso significa que cada publicación llega de verdad.</p>
+            <p style={{ marginTop: "1rem" }}>La media de engagement en Instagram para creadores de este tamaño ronda el 3–6%. Aquí estamos en el 11%. Eso significa que cada publicación llega de verdad.</p>
           </div>
           <div className="engagement-callout reveal">
-            <div className="big-num">27%</div>
+            <div className="big-num">11%</div>
             <div className="big-label">Engagement Rate</div>
             <div className="vs-line">vs. 3–6% media del sector</div>
           </div>
