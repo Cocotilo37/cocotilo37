@@ -32,8 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className={`${dmSans.variable} ${dmMono.variable} ${bebasNeue.variable} antialiased`}>
+    <html lang="es" style={{ backgroundColor: "#0a0a0a" }}>
+      <body
+        className={`${dmSans.variable} ${dmMono.variable} ${bebasNeue.variable} antialiased`}
+        style={{ backgroundColor: "#0a0a0a" }}
+      >
         {children}
       </body>
     </html>
