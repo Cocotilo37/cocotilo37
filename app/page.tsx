@@ -120,13 +120,9 @@ export default function HomePage() {
             <div className="card-title">Tutoriales &amp; Técnica</div>
             <p className="card-desc">Consejos prácticos para mejorar el ritmo de vuelta: frenadas, trazadas, setup y mentalidad de piloto.</p>
           </div>
+          
           <div className="content-card reveal">
             <div className="card-num">03</div>
-            <div className="card-title">Setups</div>
-            <p className="card-desc">Configuraciones y ajustes que uso en competición, explicados desde cero para que cualquiera los pueda aplicar.</p>
-          </div>
-          <div className="content-card reveal">
-            <div className="card-num">04</div>
             <div className="card-title">Clips &amp; Highlights</div>
             <p className="card-desc">Los momentos que merece la pena guardar: adelantamientos, récords y caos en pista.</p>
           </div>
@@ -191,25 +187,25 @@ export default function HomePage() {
             <div className="sponsor-logo"><img src="/sponsors/bolori.png" alt="Bolori" /></div>
             <span className="sponsor-word">Bolori</span>
             <span className="sponsor-code">Código <strong>COCOTILO</strong> → 5% de descuento</span>
-            <span className="sponsor-desc">Úsalo en tu compra para conseguirlo.</span>
+            <span className="sponsor-desc">Úsalo en tu compra para conseguirlo</span>
             <span className="sponsor-cta">Comprar con descuento →</span>
           </a>
           <a href="https://www.iracing.com/membership/?refid=1189216" target="_blank" rel="noreferrer" className="sponsor-card reveal">
             <div className="sponsor-logo"><img src="/sponsors/iracing.png" alt="iRacing" /></div>
             <span className="sponsor-word">iRacing</span>
-            <span className="sponsor-desc">El simulador donde compito. Únete con mi enlace.</span>
+            <span className="sponsor-desc">El simulador donde compito. Únete con mi enlace</span>
             <span className="sponsor-cta">Hazte miembro →</span>
           </a>
           <a href="https://www.instant-gaming.com/?igr=Cocotilo" target="_blank" rel="noreferrer" className="sponsor-card reveal">
             <div className="sponsor-logo"><img src="/sponsors/instant-gaming.png" alt="Instant Gaming" /></div>
             <span className="sponsor-word">Instant Gaming</span>
-            <span className="sponsor-desc">Claves de juegos al mejor precio. Apoya el canal con tu compra.</span>
+            <span className="sponsor-desc">Claves de juegos al mejor precio. Apoya el canal con tu compra</span>
             <span className="sponsor-cta">Ver ofertas →</span>
           </a>
           <a href="https://simufy.com/?ref=Cocotilo" target="_blank" rel="noreferrer" className="sponsor-card reveal">
             <div className="sponsor-logo"><img src="/sponsors/simufy.png" alt="Simufy" /></div>
             <span className="sponsor-word">Simufy</span>
-            <span className="sponsor-desc">Ingeniería y setups para simracing. Apoya el canal con tu compra.</span>
+            <span className="sponsor-desc">Volantes, pedales, cockpits y todo el hardware de simracing. Distribuidor oficial en Europa</span>
             <span className="sponsor-cta">Descubrir →</span>
           </a>
         </div>
