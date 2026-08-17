@@ -186,6 +186,14 @@ export default function HomePage() {
         <p className="support-intro reveal">Usando mis enlaces me ayudas a seguir creando contenido, sin que te cueste nada extra — algunas incluso te dan descuento a ti también.</p>
 
         <div className="sponsor-grid">
+          <a href="https://bolori.es?ref=cocotilo" target="_blank" rel="noreferrer" className="sponsor-card reveal accent">
+            <span className="sponsor-badge">5% DTO.</span>
+            <div className="sponsor-logo"><img src="/sponsors/bolori.png" alt="Bolori" /></div>
+            <span className="sponsor-word">Bolori</span>
+            <span className="sponsor-code">Código <strong>COCOTILO</strong> → 5% de descuento</span>
+            <span className="sponsor-desc">Úsalo en tu compra para conseguirlo.</span>
+            <span className="sponsor-cta">Comprar con descuento →</span>
+          </a>
           <a href="https://www.iracing.com/membership/?refid=1189216" target="_blank" rel="noreferrer" className="sponsor-card reveal">
             <div className="sponsor-logo"><img src="/sponsors/iracing.png" alt="iRacing" /></div>
             <span className="sponsor-word">iRacing</span>
@@ -203,13 +211,6 @@ export default function HomePage() {
             <span className="sponsor-word">Simufy</span>
             <span className="sponsor-desc">Ingeniería y setups para simracing. Apoya el canal con tu compra.</span>
             <span className="sponsor-cta">Descubrir →</span>
-          </a>
-          <a href="https://bolori.es?ref=cocotilo" target="_blank" rel="noreferrer" className="sponsor-card reveal accent">
-            <span className="sponsor-badge">5% dto.</span>
-            <div className="sponsor-logo"><img src="/sponsors/bolori.png" alt="Bolori" /></div>
-            <span className="sponsor-word">Bolori</span>
-            <span className="sponsor-desc">Usa mi código <strong>cocotilo</strong> y consigue un 5% de descuento.</span>
-            <span className="sponsor-cta">Comprar con descuento →</span>
           </a>
         </div>
       </section>

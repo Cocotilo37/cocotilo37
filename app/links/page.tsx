@@ -4,7 +4,7 @@ const links = [
   { label: "Instagram", sub: "@thecocotilo", href: "https://instagram.com/thecocotilo", accent: true },
   { label: "YouTube", sub: "@thecocotilo", href: "https://youtube.com/@thecocotilo", accent: true },
   { label: "TikTok", sub: "@thecocotilo", href: "https://tiktok.com/@thecocotilo", accent: true },
-  { label: "Bolori", sub: "5% de descuento con mi código: cocotilo", href: "https://bolori.es?ref=cocotilo", accent: true, logo: "/sponsors/bolori.png" },
+  { label: "Bolori", sub: "Código COCOTILO → 5% de descuento", href: "https://bolori.es?ref=cocotilo", accent: true, logo: "/sponsors/bolori.png" },
   { label: "iRacing", sub: "Únete al simulador con mi enlace", href: "https://www.iracing.com/membership/?refid=1189216", accent: false, logo: "/sponsors/iracing.png" },
   { label: "Instant Gaming", sub: "Claves de juegos, apoya el canal", href: "https://www.instant-gaming.com/?igr=Cocotilo", accent: false, logo: "/sponsors/instant-gaming.png" },
   { label: "Simufy", sub: "Ingeniería y setups de simracing", href: "https://simufy.com/?ref=Cocotilo", accent: false, logo: "/sponsors/simufy.png" },
